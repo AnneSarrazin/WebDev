@@ -1,0 +1,2 @@
+toutes les variable sont en minuscule et au singulier
+toutes les tables commencent par une majuscule et sont au singulier
