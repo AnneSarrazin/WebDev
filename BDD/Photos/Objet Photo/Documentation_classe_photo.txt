@@ -60,3 +60,12 @@ III) Interaction avec la base de données
 		
 		Si les valeurs de votre objet ne sont pas présentes dans la base de données,
 		la fonction vous le dira via une sortie écran (echo)		
+
+IV) Le lieu
+    Permet un accès à la table Lieu.
+
+    1)getIdLieuFromBDD($dbh,$nomLieu)
+        Permet de récupérer l'ID d'un lieu depuis son nom.
+
+    2)creationLieu($dbh,$nom)
+        Permet de créer un nouveau lieu.

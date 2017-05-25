@@ -97,4 +97,22 @@ class photo extends accesBdd{
             echo "Votre objet n'est pas présent dans la BDD";
         }
     }
+
+    public function creationLieu($dbh,$nom) {
+        $deja=getIdLieuFromBDD($dbh,$nom);
+        if($deja!=NULL){
+            $stmt = $dbh->prepare('INSERT INTO Lieu (idLieu,nomLieu) VALUES(NULL,?)');
+            $stmt->bindParam(1,$nom);
+            $stmt->execute();
+        }
+        else{
+            echo 'Lieu déjà existant';
+        }
+    }
+    
+    public function getIdLieuFromBDD($dbh,$nomLieu){
+        foreach($dbh->query('SELECT idLieu FROM Lieu WHERE nomLieu='.$nomLieu.'') as $row){
+            return $row["idLieu"];
+        }
+    }
 }
