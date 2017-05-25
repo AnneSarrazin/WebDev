@@ -48,9 +48,11 @@ class locataire extends accesBdd{
         {
             $this->bdd = TRUE;
         }
+        return $this->bdd;
     }
     
     public function creation($dbh) {
+        $retour = FALSE;
         if($this->bdd == FALSE)
         {
         $stmt = $dbh->prepare('INSERT INTO Locataire (idLocataire,nom,prenom,adresseMail) VALUES(NULL,?,?,?)');
@@ -59,14 +61,13 @@ class locataire extends accesBdd{
         $stmt->bindParam(3,$this->adresseMail);
         $stmt->execute();
         $this->bdd = TRUE;
+        $retour = TRUE;
         }
-        else
-        {
-            echo "Votre objet est déjà dans la BDD";
-        }
+        return $retour;
     }
     
     public function modification($dbh,$nom,$prenom,$adresseMail) {
+        $retour = FALSE;
         if($this->bdd == TRUE)
         {
         $stmt = $dbh->prepare('UPDATE locataire (nom,prenom,adresseMail) VALUES(?,?,?,?) WHERE idLocataire = ?');
@@ -78,21 +79,18 @@ class locataire extends accesBdd{
         $this->adresseMail = $adresseMail;
         $stmt->bindParam(4,$this->id);
         $stmt->execute();
+        $retour = TRUE;
         }
-        else
-        {
-            echo "Votre objet n'est pas présent dans la BDD";
-        }        
+        return $retour;     
     }
     
     public function destruction($dbh,$reservation) {
+        $retour = FALSE;
         if($this->bdd == TRUE)
         {
             $reservation->modification($dbh,$reservation->getDateDeb(),$reservation->getDateFin(),$this->id,$reservation->getValidation());
+            $retour = TRUE;
         }
-        else
-        {
-            echo "Votre objet n'est pas présent dans la BDD";
-        }
+        return $retour;
     }
 }

@@ -1,4 +1,4 @@
-﻿Copyright 2017 Luca Mayer Dalverny <luca.mayer-dalverny@isen.yncrea.fr>
+Copyright 2017 Luca Mayer Dalverny <luca.mayer-dalverny@isen.yncrea.fr>
 
 -LA CLASSE LOCATAIRE-
 
@@ -13,7 +13,7 @@ I) Création de l'objet
 	Pour la suite, l'objet PDO portera le nom $dbh.
 	
 	Pour créer un objet 'locataire', vous devez utiliser la fonction :
-	__construct($dbh,$nom,$prenom,$adresseMail)
+	__construct($dbh,$nom,$prenom,$adresseMil)
 	qui va implementer les instances de l'objet et verifier si ces données
 	sont présentes dans la base de données. Si elle le sont, l'id de la ligne
 	sera mit dans l'instance $id de l'objet créé.
@@ -34,8 +34,8 @@ III) Interaction avec la base de données
 		de la création de votre objet 'locataire' :
 		creation($dbh)
 		
-		Si vos valeurs sont déjà présentent dans la base de données, la fonction
-		vous le dira via une sortie écran (echo).
+		S'il y a une erreur la fonction renverra false, dans le cas contraire,
+                elle renverra true.
 	
 	2) modification dans la base de données
 		
@@ -49,8 +49,8 @@ III) Interaction avec la base de données
 		du mail mais pas de nom et prénom : 
 		modification($dbh,getNom(),getPrenom(),$maNouvelleAdresseMail)
 		
-		Si les valeurs de votre objet ne sont pas présentes dans la base de données,
-		la fonction vous le dira via une sortie écran (echo)
+		S'il y a une erreur la fonction renverra false, dans le cas contraire,
+                elle renverra true.
 		
 	3) suppression dans la base de données
 		
@@ -58,5 +58,5 @@ III) Interaction avec la base de données
 		d'utiliser la fonction 'destruction' prenant en paramètre l'objet PDO ($dbh):
 		destruction($dbh)
 		
-		Si les valeurs de votre objet ne sont pas présentes dans la base de données,
-		la fonction vous le dira via une sortie écran (echo)		
+		S'il y a une erreur la fonction renverra false, dans le cas contraire,
+                elle renverra true.	
