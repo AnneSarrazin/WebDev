@@ -8,11 +8,11 @@
 --------------------------------------------------------------
 
 CREATE TABLE Reservation(
-        id_resa      int (11) Auto_increment  NOT NULL ,
-        date_deb     Date NOT NULL ,
-        date_fin     Date NOT NULL ,
-        id_locataire Int NOT NULL ,
-        PRIMARY KEY (id_resa )
+        idResa      int (11) Auto_increment  NOT NULL ,
+        dateDeb     Date NOT NULL ,
+        dateFin     Date NOT NULL ,
+        idLocataire Int NOT NULL ,
+        PRIMARY KEY (idResa )
 )ENGINE=InnoDB;
 
 
@@ -21,11 +21,11 @@ CREATE TABLE Reservation(
 --------------------------------------------------------------
 
 CREATE TABLE Locataire(
-        id_locataire int (11) Auto_increment  NOT NULL ,
+        idLocataire int (11) Auto_increment  NOT NULL ,
         nom          Varchar (250) NOT NULL ,
         prenom       Varchar (250) ,
-        adresse_mail Varchar (100) NOT NULL ,
-        PRIMARY KEY (id_locataire )
+        adresseMail Varchar (100) NOT NULL ,
+        PRIMARY KEY (idLocataire )
 )ENGINE=InnoDB;
 
 
@@ -34,14 +34,14 @@ CREATE TABLE Locataire(
 --------------------------------------------------------------
 
 CREATE TABLE Commentaire(
-        id_com     int (11) Auto_increment  NOT NULL ,
+        idCom     int (11) Auto_increment  NOT NULL ,
         contenu    Varchar (500) NOT NULL ,
         validation Bool NOT NULL ,
-        id_resa    Int NOT NULL ,
-        id_com_1   Int NOT NULL ,
-        PRIMARY KEY (id_com )
+        idResa    Int NOT NULL ,
+        idCom1   Int NOT NULL ,
+        PRIMARY KEY (idCom)
 )ENGINE=InnoDB;
 
-ALTER TABLE Reservation ADD CONSTRAINT FK_Reservation_id_locataire FOREIGN KEY (id_locataire) REFERENCES Locataire(id_locataire);
-ALTER TABLE Commentaire ADD CONSTRAINT FK_Commentaire_id_resa FOREIGN KEY (id_resa) REFERENCES Reservation(id_resa);
-ALTER TABLE Commentaire ADD CONSTRAINT FK_Commentaire_id_com_1 FOREIGN KEY (id_com_1) REFERENCES Commentaire(id_com);
+ALTER TABLE Reservation ADD CONSTRAINT FK_Reservation_id_locataire FOREIGN KEY (idLocataire) REFERENCES Locataire(idLocataire);
+ALTER TABLE Commentaire ADD CONSTRAINT FK_Commentaire_id_resa FOREIGN KEY (idResa) REFERENCES Reservation(idResa);
+ALTER TABLE Commentaire ADD CONSTRAINT FK_Commentaire_id_com_1 FOREIGN KEY (idCom1) REFERENCES Commentaire(idCom);
