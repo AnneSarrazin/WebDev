@@ -6,39 +6,39 @@
  * Documentation_classe_locataire.txt 
  * @author LMD
  */
-class locataire extends acces_bdd{
+class locataire extends accesBdd{
     
     //Instances de la classe
     private $id;
     private $nom;
     private $prenom;
-    private $adresse_mail;
+    private $adresseMail;
     protected $bdd;
 
     //Setter et getter
-    function get_id() {
+    function getId() {
         return $this->id;
     }
 
-    function get_nom() {
+    function getNom() {
         return $this->nom;
     }
 
-    function get_prenom() {
+    function getPrenom() {
         return $this->prenom;
     }
 
-    function get_adresse_mail() {
-        return $this->adresse_mail;
+    function getAdresseMail() {
+        return $this->adresseMail;
     }
     
     //Methodes de la classe
-    public function __construct($dbh,$nom,$prenom,$adresse_mail) {
+    public function __construct($dbh,$nom,$prenom,$adresseMail) {
         $this->nom = $nom;
         $this->prenom = $prenom;
-        $this->adresse_mail = $adresse_mail;
-        foreach($dbh->query('SELECT id_locataire FROM Locataire WHERE nom='.$nom.' AND prenom='.$prenom.' AND adresse_mail='.$adresse_mail) as $row){
-            $this->id = $row["id_locataire"];
+        $this->adresseMail = $adresseMail;
+        foreach($dbh->query('SELECT idLocataire FROM Locataire WHERE nom='.$nom.' AND prenom='.$prenom.' AND adresseMail='.$adresseMail) as $row){
+            $this->id = $row["idLocataire"];
         }
         if($this->id == NULL)
         {
@@ -53,10 +53,10 @@ class locataire extends acces_bdd{
     public function creation($dbh) {
         if($this->bdd == FALSE)
         {
-        $stmt = $dbh->prepare('INSERT INTO Locataire (id_locataire,nom,prenom,adresse_mail) VALUES(NULL,?,?,?)');
+        $stmt = $dbh->prepare('INSERT INTO Locataire (idLocataire,nom,prenom,adresseMail) VALUES(NULL,?,?,?)');
         $stmt->bindParam(1,$this->nom);
         $stmt->bindParam(2,$this->prenom);
-        $stmt->bindParam(3,$this->adresse_mail);
+        $stmt->bindParam(3,$this->adresseMail);
         $stmt->execute();
         $this->bdd = TRUE;
         }
@@ -66,16 +66,16 @@ class locataire extends acces_bdd{
         }
     }
     
-    public function modification($dbh,$nom,$prenom,$adresse_mail) {
+    public function modification($dbh,$nom,$prenom,$adresseMail) {
         if($this->bdd == TRUE)
         {
-        $stmt = $dbh->prepare('UPDATE locataire (nom,prenom,adresse_mail) VALUES(?,?,?,?) WHERE id_locataire = ?');
+        $stmt = $dbh->prepare('UPDATE locataire (nom,prenom,adresseMail) VALUES(?,?,?,?) WHERE idLocataire = ?');
         $stmt->bindParam(1,$nom);
         $this->nom = $nom;
         $stmt->bindParam(2,$prenom);
         $this->prenom = $prenom;
-        $stmt->bindParam(3,$adresse_mail);
-        $this->adresse_mail = $adresse_mail;
+        $stmt->bindParam(3,$adresseMail);
+        $this->adresseMail = $adresseMail;
         $stmt->bindParam(4,$this->id);
         $stmt->execute();
         }
@@ -88,7 +88,7 @@ class locataire extends acces_bdd{
     public function destruction($dbh,$reservation) {
         if($this->bdd == TRUE)
         {
-            $reservation->modification($dbh,$reservation->getDate_deb(),$reservation->getDate_fin(),$this->id,$reservation->get_validation());
+            $reservation->modification($dbh,$reservation->getDateDeb(),$reservation->getDateFin(),$this->id,$reservation->getValidation());
         }
         else
         {
