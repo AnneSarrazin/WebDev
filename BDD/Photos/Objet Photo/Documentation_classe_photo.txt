@@ -69,3 +69,6 @@ IV) Le lieu
 
     2)creationLieu($dbh,$nom)
         Permet de créer un nouveau lieu.
+    
+    3)suppresseionLieu($dbh,$idLieu)
+        Permet de supprimer un lieu depuis son ID.

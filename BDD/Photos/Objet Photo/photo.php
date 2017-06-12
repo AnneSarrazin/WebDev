@@ -71,7 +71,7 @@ class photo extends accesBdd{
     public function modification($dbh,$url,$description,$idLieu) {
         if($this->bdd == TRUE)
         {
-        $stmt = $dbh->prepare('UPDATE Photos (url,description,id_lieu) VALUES(?,?,?,?) WHERE idPhotos = ?');
+        $stmt = $dbh->prepare('UPDATE Photos (url,description,idLieu) VALUES(?,?,?,?) WHERE idPhotos = ?');
         $stmt->bindParam(1,$url);
         $this->url = $url;
         $stmt->bindParam(2,$description);
@@ -114,5 +114,9 @@ class photo extends accesBdd{
         foreach($dbh->query('SELECT idLieu FROM Lieu WHERE nomLieu='.$nomLieu.'') as $row){
             return $row["idLieu"];
         }
+    }
+    
+    public function suppressionLieu($dbh,$idLieu){
+        $dbh->query('DELETE FROM Lieu WHERE idLieu='.$idLieu.'');
     }
 }
