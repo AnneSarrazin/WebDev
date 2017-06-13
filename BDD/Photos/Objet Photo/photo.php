@@ -1,12 +1,12 @@
 <?php
 
 /**
- * Classe agissant sur la table locataire dans la bdd
+ * Classe agissant sur la table photo dans la bdd
  * Avant d'utiliser le code qui suit, lisez le fichier
- * Documentation_classe_locataire.txt 
- * @author LMD
+ * Documentation_classe_photo.txt 
+ * @author A.Sarrazin
  */
-class photo extends accesBdd{
+class photo{
     
     //Instances de la classe
     private $idPhoto;
@@ -71,7 +71,7 @@ class photo extends accesBdd{
     public function modification($dbh,$url,$description,$idLieu) {
         if($this->bdd == TRUE)
         {
-        $stmt = $dbh->prepare('UPDATE Photos (url,description,idLieu) VALUES(?,?,?,?) WHERE idPhotos = ?');
+        $stmt = $dbh->prepare('UPDATE Photos SET url = ? , description = ? , idLieu = ? WHERE idPhotos = ?');
         $stmt->bindParam(1,$url);
         $this->url = $url;
         $stmt->bindParam(2,$description);

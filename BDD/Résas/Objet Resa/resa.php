@@ -78,7 +78,7 @@ class resa extends accesBdd{
     public function modification($dbh,$DateDeb,$DateFin,$idLoc,$valide) {
         if($this->Bdd == TRUE)
         {
-        $stmt = $dbh->prepare('UPDATE Reservation (dateDeb,dateFin,idLocataire,validation) VALUES(?,?,?,?,?) WHERE idResa = ?');
+        $stmt = $dbh->prepare('UPDATE Reservation SET dateDeb=? , dateFin = ? , idLocataire = ?, validation = ? WHERE idResa = ?');
         $stmt->bindParam(1,$DateDeb);
         $this->DateDeb = $DateDeb;
         $stmt->bindParam(2,$DateFin);

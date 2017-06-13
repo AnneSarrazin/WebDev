@@ -66,7 +66,7 @@ class doc extends accesBdd{
     public function modification($dbh,$url,$nomDoc,$descriptionDoc) {
         if($this->bdd == TRUE)
         {
-        $stmt = $dbh->prepare('UPDATE Documents (url,nomDoc,descriptionDoc) VALUES(?,?,?,?) WHERE idDoc = ?');
+        $stmt = $dbh->prepare('UPDATE Documents SET url = ? , nomDoc = ? , descriptionDoc = ? WHERE idDoc = ?');
         $stmt->bindParam(1,$url);
         $this->url = $url;
         $stmt->bindParam(2,$nomDoc);
