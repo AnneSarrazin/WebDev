@@ -39,7 +39,7 @@ CREATE TABLE Commentaire(
         contenu    Varchar (500) NOT NULL ,
         valide Int NOT NULL ,
         idResa    Int NOT NULL ,
-        idCom1   Int NOT NULL ,
+        idCom1   Int ,
         PRIMARY KEY (idCom)
 )ENGINE=InnoDB;
 
