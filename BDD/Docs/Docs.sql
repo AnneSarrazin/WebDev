@@ -8,9 +8,9 @@
 #------------------------------------------------------------
 
 CREATE TABLE Documents(
-        id_doc          int (11) Auto_increment  NOT NULL ,
-        nom_doc         Varchar (250) NOT NULL ,
-        description_doc Varchar (400) ,
-        PRIMARY KEY (id_doc )
+        iDoc          int (11) Auto_increment  NOT NULL ,
+        nomDoc         Varchar (250) NOT NULL ,
+        descriptionDoc Varchar (400) ,
+        PRIMARY KEY (idDoc )
 )ENGINE=InnoDB;
 
