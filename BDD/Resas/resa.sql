@@ -11,7 +11,8 @@ CREATE TABLE Reservation(
         idResa      int (11) Auto_increment  NOT NULL ,
         dateDeb     Date NOT NULL ,
         dateFin     Date NOT NULL ,
-        idLocataire Int NOT NULL ,
+        idLocataire Int ,
+        valide Int NOT NULL,
         PRIMARY KEY (idResa )
 )ENGINE=InnoDB;
 
@@ -36,7 +37,7 @@ CREATE TABLE Locataire(
 CREATE TABLE Commentaire(
         idCom     int (11) Auto_increment  NOT NULL ,
         contenu    Varchar (500) NOT NULL ,
-        validation Bool NOT NULL ,
+        valide Int NOT NULL ,
         idResa    Int NOT NULL ,
         idCom1   Int NOT NULL ,
         PRIMARY KEY (idCom)

@@ -6,7 +6,7 @@
  * Documentation_classe_locataire.txt 
  * @author LMD
  */
-class doc extends accesBdd{
+class doc{
     
     //Instances de la classe
     private $idDoc;
@@ -27,14 +27,19 @@ class doc extends accesBdd{
     function getDescriptionDoc() {
         return $this->descriptionDoc;
     }
+    
+    function getUrl() {
+        return $this->url;
+    }
 
+    
         
     //Methodes de la classe
     public function __construct($dbh,$url,$nomDoc,$descriptionDoc) {
         $this->url = $url;
         $this->descriptionDoc = $descriptionDoc;
         $this->nomDoc = $nomDoc;
-        foreach($dbh->query('SELECT idDoc FROM Documents WHERE url='.$url.' AND descriptionDoc='.$descriptionDoc.' AND nomDoc='.$nomDoc.'') as $row){
+        foreach($dbh->query('SELECT idDoc FROM documents WHERE url=\''.$url.'\' AND descriptionDoc=\''.$descriptionDoc.'\' AND nomDoc=\''.$nomDoc.'\'') as $row){
             $this->idDoc = $row["idDoc"];
         }
         if($this->idDoc == NULL)
@@ -56,6 +61,7 @@ class doc extends accesBdd{
         $stmt->bindParam(3,$this->descriptionDoc);
         $stmt->execute();
         $this->bdd = TRUE;
+        echo 'Création réussie';
         }
         else
         {
@@ -86,6 +92,7 @@ class doc extends accesBdd{
         if($this->bdd == TRUE)
         {
             $dbh->query('DELETE FROM Documents WHERE idDoc='.$this->idDoc.'');  
+            echo 'Supprimé!';
         }
         else
         {
