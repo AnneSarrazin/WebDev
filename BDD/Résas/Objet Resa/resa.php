@@ -6,7 +6,7 @@
 
  */
 
-class resa extends accesBdd{
+class resa{
     protected $IdResa;
     protected $DateDeb;
     protected $DateFin;

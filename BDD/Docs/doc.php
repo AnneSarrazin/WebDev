@@ -6,7 +6,7 @@
  * Documentation_classe_locataire.txt 
  * @author LMD
  */
-class doc extends accesBdd{
+class doc{
     
     //Instances de la classe
     private $idDoc;
