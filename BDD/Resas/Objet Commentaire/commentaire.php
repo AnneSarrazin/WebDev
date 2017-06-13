@@ -11,9 +11,9 @@ class commentaire extends acces_bdd{
     protected $bdd;
     protected $id_com;
     protected $contenu;
-    protected $validation;
-    protected $id_resa;
-    protected $id_com_1;
+    protected $valide;
+    protected $idResa;
+    protected $idCom1;
 
     function getBdd() {
         return $this->bdd;
