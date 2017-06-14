@@ -72,7 +72,7 @@
                 echo '</td>';
                 
                 echo '<td>';
-                echo '<a href = \'ModificationResa.php?IdResa='.$Tab[$i][0].'&DateDeb='.$Tab[$i][1].'&DateFin='.$Tab[$i][2].'&Locataire='.$NomPrenom[0].'\'>Modifier</a>';
+                echo '<a href = \'ModificationResa.php?IdResa='.$Tab[$i][0].'&DateDeb='.$Tab[$i][1].'&DateFin='.$Tab[$i][2].'&Locataire='.$NomPrenom[0].'&Valide='.$Tab[$i][4].'\'>Modifier</a>';
                 echo '</td>';
                 
                 echo '<td>';
