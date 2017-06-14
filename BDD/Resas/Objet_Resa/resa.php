@@ -108,7 +108,24 @@ class resa{
     }
     
     public function modification($dbh,$DateDeb,$DateFin,$idLoc,$valide) {
-        if($this->Bdd == TRUE)
+        if(self::verifDate($DateDeb)){
+            $this->DateDeb=$DateDeb;
+            $entreeOk=TRUE;
+        }
+        else{
+            echo 'Date de début invalide';
+            $entreeOk=FALSE;
+        }
+        if(self::verifDate($DateFin)){
+             $this->DateFin=$DateFin;
+             $entreeOk=TRUE;
+        }
+        else{
+            echo 'Date de fin invalide';
+            $entreeOk=FALSE;
+        }
+        
+        if(($this->Bdd == TRUE)&&($entreeOk==TRUE))
         {
         $stmt = $dbh->prepare('UPDATE Reservation SET dateDeb=? , dateFin = ? , idLocataire = ?, valide = ? WHERE idResa = ?');
         $stmt->bindParam(1,$DateDeb);
@@ -122,10 +139,15 @@ class resa{
         $stmt->bindParam(5,$this->IdResa);
         $stmt->execute();
         }
-        else
+        else if ($this->Bdd == FALSE)
         {
             echo "Votre objet n'est pas présent dans la BDD";
-        }        
+        }  
+        
+        else if ($entreeOk==FALSE)
+        {
+            echo 'Entrée(s) invalide(s)';
+        }
     }
     
     public function validation($dbh){
