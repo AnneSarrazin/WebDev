@@ -12,9 +12,13 @@
             $Tab[$compteur]=$row;
             $compteur++;
         }
-        ?>
-        <p>Pour ajouter une réservation manuellement, <a href='CreationResa.php'>cliquez ici</a>.</p>
-    
+        if(!isset($Tab))
+        {
+            echo '<p>Il n\'y a aucune réservation actuellement!</p>';
+        }
+        else
+        {
+        echo('
         <table>
             <tr>
                 <th>Date de début de réservation</th>
@@ -24,10 +28,20 @@
                 <th>Valider</th>
                 <th>Modifier</th>
                 <th>Supprimer</th>
-            </tr>
-            <?php
+            </tr>');
+        
             for($i = 0; $i<count($Tab);$i++)
             {
+                if(!is_null($Tab[$i][3]))
+                {
+                    $stmt = $dbh->prepare('SELECT nom, prenom FROM locataire WHERE idLocataire = '.$Tab[$i][3]); //On récupère le nom et le prénom correspondant au locataire de la réservation
+                    $stmt->execute(); 
+                    $NomPrenom = $stmt->fetch();
+                }
+                else
+                {
+                    $NomPrenom = Array(null,null);
+                }
                 echo '<tr>';
                 for($j = 1; $j<5;$j++)
                 {
@@ -45,10 +59,7 @@
                     }
                     else if($j == 3 && !is_null($Tab[$i][$j])) //La quatrième colonne de ce tableau est celle correspondant à l'ID du locataire
                     {
-                        $stmt = $dbh->prepare('SELECT nom, prenom FROM locataire WHERE idLocataire = '.$Tab[$i][$j]); //On récupère le nom et le prénom correspondant au locataire de la réservation
-                        $stmt->execute(); 
-                        $nomPrenom = $stmt->fetch();
-                        echo $nomPrenom[0].' '.$nomPrenom[1];
+                        echo $NomPrenom[0].' '.$NomPrenom[1];
                     }
                     else
                     {
@@ -61,7 +72,7 @@
                 echo '</td>';
                 
                 echo '<td>';
-                echo '<a href = \'ModificationResa.php?IdResa='.$Tab[$i][0].'&DateDeb='.$Tab[$i][1].'&DateFin='.$Tab[$i][2].'&Locataire='.$nomPrenom[0].'\'>Modifier</a>';
+                echo '<a href = \'ModificationResa.php?IdResa='.$Tab[$i][0].'&DateDeb='.$Tab[$i][1].'&DateFin='.$Tab[$i][2].'&Locataire='.$NomPrenom[0].'\'>Modifier</a>';
                 echo '</td>';
                 
                 echo '<td>';
@@ -69,8 +80,9 @@
                 echo '</td>';
                 echo '</tr>';
             }
-            ?>
+        }
+        ?>
         </table>
-        
+        <p>Pour ajouter une réservation manuellement, <a href='CreationResa.php'>cliquez ici</a>.</p>
     </body>
 </html>
