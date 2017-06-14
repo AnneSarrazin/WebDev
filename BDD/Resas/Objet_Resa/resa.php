@@ -44,8 +44,7 @@ class resa{
         $this->IdLocataire=$idLoc;
         $this->Validation=$Valide;
         $this->Bdd=$Dbh;
-       
-        echo $DateDeb;
+      
         foreach($Dbh->query('SELECT idResa FROM reservation WHERE dateDeb=\''.$DateDeb.'\' AND dateFin=\''.$DateFin.'\'') as $row){
             $this->IdResa = $row["idResa"];
         }
