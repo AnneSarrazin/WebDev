@@ -39,27 +39,57 @@ class resa{
 
     public function __construct($Dbh,$DateDeb,$DateFin,$idLoc,$Valide) {
         $this->IdResa;
-        $this->DateDeb=$DateDeb;
-        $this->DateFin=$DateFin;
+        if(self::verifDate($DateDeb)){
+            $this->DateDeb=$DateDeb;
+            $entreeOk=TRUE;
+        }
+        else{
+            echo 'Date de début invalide';
+            $entreeOk=FALSE;
+        }
+        if(self::verifDate($DateFin)){
+             $this->DateFin=$DateFin;
+             $entreeOk=TRUE;
+        }
+        else{
+            echo 'Date de fin invalide';
+            $entreeOk=FALSE;
+        }
         $this->IdLocataire=$idLoc;
         $this->Validation=$Valide;
         $this->Bdd=$Dbh;
-      
-        foreach($Dbh->query('SELECT idResa FROM reservation WHERE dateDeb=\''.$DateDeb.'\' AND dateFin=\''.$DateFin.'\'') as $row){
-            $this->IdResa = $row["idResa"];
+        if($entreeOk==TRUE){
+            foreach($Dbh->query('SELECT idResa FROM reservation WHERE dateDeb=\''.$DateDeb.'\' AND dateFin=\''.$DateFin.'\'') as $row){
+                $this->IdResa = $row["idResa"];
+            }
+            if($this->IdResa == NULL)
+            {
+                $this->Bdd = FALSE;
+            }
+            else
+            {
+                $this->Bdd = TRUE;
+            }
         }
-        if($this->IdResa == NULL)
-        {
-            $this->Bdd = FALSE;
-        }
-        else
-        {
-            $this->Bdd = TRUE;
+        
+        else{
+            echo 'Erreur';
         }
         
     }
     
-     public function creation($dbh) {
+    function VerifDate($Date){
+        $date=  explode("-",$Date);
+       if( checkdate($date[1], $date[2],$date[0])){
+           return true;
+       }
+       else{
+           return false;
+       }
+    }
+
+
+    public function creation($dbh) {
         if($this->Bdd == FALSE)
         {
         $stmt = $dbh->prepare('INSERT INTO Reservation (idResa,dateDeb,dateFin,idLocataire,valide) VALUES(NULL,?,?,?,?)');
