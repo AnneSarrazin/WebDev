@@ -11,7 +11,7 @@
         <?php
         $dbh = new PDO('mysql:host=localhost;dbname=Mandeline_Resa', 'root','');
         foreach($dbh->query('SELECT * FROM prix') as $row){
-            echo "<tr><td>".$row['dateDeb']."</td><td>".$row['dateFin']."</td><td>".$row['tarif']."</td></tr>";
+            echo "<tr><td>".$row['dateDeb']."</td><td>".$row['dateFin']."</td><td>".$row['Tarif']."€</td></tr>";
         }
         ?>
         </table>
