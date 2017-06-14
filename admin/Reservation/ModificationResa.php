@@ -12,11 +12,13 @@ and open the template in the editor.
         <script src="VerifDate.js" type="text/javascript"></script>
     </head>
     <body>
+        <p>Retour à la liste <a href="affichageResa.php">ici</a></p>
         <h2>Modification d'une réservation</h2>
         <?php
         $DateDeb=$_GET['DateDeb'];
         $DateFin=$_GET['DateFin'];
         $Locataire=$_GET['Locataire'];
+        $Valide=$_GET['Valide'];
         ?>
         <form method="post" action="ModificationResaPHP.php" onsubmit="return DateOk()">
             <fieldset>
@@ -27,6 +29,7 @@ and open the template in the editor.
                 <label for="dateFin">Date de fin de la réservation : </label><br>
                 <input name="dateFin" type="date" value="<?php echo $DateFin?>" required/><br/><br/>
                 <input type="hidden" name="saveDateFin" value="<?php echo $DateFin?>"/>
+                <input type="hidden" name="Valide" value="<?php echo $Valide ?>"/>
                 <input type="submit" id="btn_envoyer" value="Modifier les dates"/>
             </fieldset>
         </form>
@@ -37,6 +40,7 @@ and open the template in the editor.
                 <input type="text" name="nom" value="<?php echo $Locataire?>" onchange="request(this);"/>
                 <input type="hidden" name="saveDateDeb" value="<?php echo $DateDeb?>"/>
                 <input type="hidden" name="saveDateFin" value="<?php echo $DateFin?>"/>
+                <input type="hidden" name="Valide" value="<?php echo $Valide ?>"/>
                 <select name="locataire" id="locataire" required></select> <br/><br/>
                 <input type="submit" id="btn_envoyer_loc" value="Modifier le locataire"/>
             </fieldset>

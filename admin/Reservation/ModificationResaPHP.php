@@ -3,9 +3,15 @@ $DateDeb=$_POST['dateDeb'];
 $DateFin=$_POST['dateFin'];
 $saveDateFin=$_POST['saveDateFin'];
 $saveDateDeb=$_POST['saveDateDeb'];
+$Valide=$_POST['Valide'];
 
-require '../BDD/Resas/Objet_Resa/resa.php';
+require 'resa.php';
 
 $dbh = new PDO('mysql:host=localhost;dbname=Mandeline_Resa', 'root','');
-$Resa= new resa($dbh,$saveDateDeb,$saveDateFin,NULL,0);
+$Resa= new resa($dbh,$saveDateDeb,$saveDateFin,NULL,$Valide);
 $Resa->modification($dbh, $DateDeb, $DateFin,$Resa->getIdLocataire(),$Resa->getValidation());
+
+echo '<p>Dates changées avec succès.<br>';
+echo 'Si vous n\'êtes pas automatiquement redirigé cliquez <a href=\"affichageResa.php">ici</a></p>';
+
+header("refresh:3;url=affichageResa.php");
