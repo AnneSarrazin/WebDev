@@ -36,10 +36,13 @@
         {
             for($i = 0; $i<count($Tab); $i++)
             {
+                if($Tab[$i][2]==1 && !isset($Tab[$i][5])) //On n'affiche pas les commentaires non validés, ni les réponses. Celles-ci sont traitées séparément.
                 {
                     echo '<div class=\'commentaire\'>';
                     afficheCommentaire($dbh, $Tab, $i);
+                    for($j = 0; $j<count($Tab); $j++) //On cherche une (ou plusieurs!) réponse(s) a ce commentaire. Si il y en a une, on l'affiche.
                     {   
+                        if($Tab[$j][5] == $Tab[$i][0] && $Tab[$j][2]==1) //Si l'ID du commentaire correspond avec l'ID de réponse de la cible et que le commentaire est valide, c'est bien une réponse à afficher.
                         {
                             echo '<div class=\'Reponse\'>';
                             afficheCommentaire($dbh, $Tab, $j);
