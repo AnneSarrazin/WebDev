@@ -31,7 +31,7 @@ function request(callBack) {
     var nom = encodeURIComponent(document.getElementById("nomLocataire").value);
     var prenom = encodeURIComponent(document.getElementById("prenomLocataire").value);
     var mail = encodeURIComponent(document.getElementById("mailLocataire").value); 
-    xhr.open("GET", "InsertionLocataire.php?Nom="+nom+"&Prenom="+prenom+"&Mail="+mail, true);
+    xhr.open("GET", "InsertionLocataireBis.php?Nom="+nom+"&Prenom="+prenom+"&Mail="+mail, true);
     xhr.send(null);
     
    
@@ -41,6 +41,8 @@ function readData(oData) {
     if(oData != "Erreur lors de l'ajout du locataire")
     {
         document.getElementById("formulaire").style.display = "none";
+        document.getElementById("retour").style.display = "inline";
+        window.location = "http://localhost/Mandeline/ListeLocataire/ListeLocataire.php";
     }
     alert(oData);
 }
