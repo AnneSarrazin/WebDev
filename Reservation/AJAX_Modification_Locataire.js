@@ -57,6 +57,7 @@ function readData(oData) {
         oOption = document.createElement("option");
         oInner = document.createTextNode(nodes[i].getAttribute("name"));
         oOption.value = nodes[i].getAttribute("id");
+        console.log("id="+oOption.value);
         oOption.appendChild(oInner);
         oSelect.appendChild(oOption);
     }
