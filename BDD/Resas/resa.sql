@@ -38,7 +38,8 @@ CREATE TABLE Commentaire(
         idCom     int (11) Auto_increment  NOT NULL ,
         contenu    Varchar (500) NOT NULL ,
         valide Int NOT NULL ,
-        idResa    Int NOT NULL ,
+        idResa    Int ,
+		idLocataire	Int ,
         idCom1   Int ,
         PRIMARY KEY (idCom)
 )ENGINE=InnoDB;
@@ -46,3 +47,4 @@ CREATE TABLE Commentaire(
 ALTER TABLE Reservation ADD CONSTRAINT FK_Reservation_id_locataire FOREIGN KEY (idLocataire) REFERENCES Locataire(idLocataire);
 ALTER TABLE Commentaire ADD CONSTRAINT FK_Commentaire_id_resa FOREIGN KEY (idResa) REFERENCES Reservation(idResa);
 ALTER TABLE Commentaire ADD CONSTRAINT FK_Commentaire_id_com_1 FOREIGN KEY (idCom1) REFERENCES Commentaire(idCom);
+ALTER TABLE Commentaire ADD CONSTRAINT FK_Commentaire_id_loc FOREIGN KEY (idLocataire) REFERENCES Locataire(idLocataire);
