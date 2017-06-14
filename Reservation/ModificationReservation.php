@@ -34,6 +34,8 @@ and open the template in the editor.
                 <legend>Modification du locataire :</legend>
                 <label for="nom">Entrez le nom de famille du locataire :</label>
                 <input type="text" name="nom" value="<?php echo $Locataire?>" onchange="request(this);"/>
+                <input type="hidden" name="saveDateDeb" value="<?php echo $DateDeb?>"/>
+                <input type="hidden" name="saveDateFin" value="<?php echo $DateFin?>"/>
                 <select name="locataire" id="locataire" required></select> <br/><br/>
                 <input type="submit" id="btn_envoyer_loc" value="Modifier le locataire"/>
             </fieldset>
