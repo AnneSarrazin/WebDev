@@ -14,6 +14,7 @@ class commentaire{
     protected $valide;
     protected $idResa;
     protected $idCom1;
+    protected $idLocataire;
 
     function getBdd() {
         return $this->bdd;
@@ -38,15 +39,20 @@ class commentaire{
     function getIdCom1() {
         return $this->idCom1;
     }
+    
+    function getIdLocataire() {
+        return $this->idLocataire;
+    }
 
-    public function __construct($dbh,$contenu,$idResa,$idCom1,$valide) {
+    public function __construct($dbh,$contenu,$idLocataire,$idResa,$idCom1,$valide) {
         $this->idCom;
         $this->contenu=$contenu;
+        $this->idLocataire=$idLocataire;
         $this->idResa=$idResa;
         $this->idCom1=$idCom1;
         $this->valide=$valide;
         
-        foreach($dbh->query('SELECT idCom FROM commentaire WHERE contenu=\''.$contenu.'\' AND valide=\''.$valide.'\' AND idResa=\''.$idResa.'\' AND (idCom1=\''.$idCom1.'\' OR idCom1 IS NULL)') as $row){
+        foreach($dbh->query('SELECT idCom FROM commentaire WHERE contenu=\''.$contenu.'\' AND valide=\''.$valide.'\' AND idResa=\''.$idResa.'\' AND (idCom1=\''.$idCom1.'\' OR idCom1 IS NULL) AND (idLocataire=\''.$idLocataire.'\' OR idLocataire IS NULL)') as $row){
             $this->idCom = $row["idCom"];
         }
         if($this->idCom == NULL)
@@ -62,13 +68,14 @@ class commentaire{
     public function creation($dbh) {
         if($this->bdd == FALSE)
         {
-        $stmt = $dbh->prepare('INSERT INTO Commentaire (idCom,contenu,valide,idResa,idCom1) VALUES(NULL,?,?,?,?)');
+        $stmt = $dbh->prepare('INSERT INTO Commentaire (idCom,contenu,idLocataire,valide,idResa,idCom1) VALUES(NULL,?,?,?,?,?)');
         $stmt->bindParam(1,$this->contenu);
-        $stmt->bindParam(2,$this->valide);
-        $stmt->bindParam(3,$this->idResa);
-        $stmt->bindParam(4,$this->idCom1);
+        $stmt->bindParam(2,$this->idLocataire);
+        $stmt->bindParam(3,$this->valide);
+        $stmt->bindParam(4,$this->idResa);
+        $stmt->bindParam(5,$this->idCom1);
         $stmt->execute();
-        foreach($dbh->query('SELECT idCom FROM commentaire WHERE contenu=\''.$this->contenu.'\' AND valide=\''.$this->valide.'\' AND idResa=\''.$this->idResa.'\' AND (idCom1=\''.$this->idCom1.'\' OR idCom1 IS NULL)') as $row){
+        foreach($dbh->query('SELECT idCom FROM commentaire WHERE contenu=\''.$this->contenu.'\' AND valide=\''.$this->valide.'\' AND idResa=\''.$this->idResa.'\' AND (idCom1=\''.$this->idCom1.'\' OR idCom1 IS NULL) AND (idLocataire=\''.$this->idLocataire.'\' OR idLocataire IS NULL)') as $row){
             $this->idCom = $row["idCom"];
         }
         $this->bdd = TRUE;
@@ -79,19 +86,21 @@ class commentaire{
         }
     }
     
-    public function modification($dbh,$contenu,$idResa,$idCom1,$valide) {
+    public function modification($dbh,$contenu,$idLocataire,$idResa,$idCom1,$valide) {
         if($this->bdd == TRUE)
         {
-        $stmt = $dbh->prepare('UPDATE commentaire SET contenu = ?, valide = ?, idResa = ?, idCom1 = ? WHERE idCom = ?');
+        $stmt = $dbh->prepare('UPDATE commentaire SET contenu = ?, valide = ?, idLocataire = ?, idResa = ?, idCom1 = ? WHERE idCom = ?');
         $stmt->bindParam(1,$contenu);
         $this->contenu = $contenu;
         $stmt->bindParam(2,$valide);
         $this->valide = $valide;
-        $stmt->bindParam(3,$idResa);
+        $stmt->bindParam(3,$idLocataire);
+        $this->idLocataire = $idLocataire;
+        $stmt->bindParam(4,$idResa);
         $this->idResa = $idResa;
-        $stmt->bindParam(4,$idCom1);
+        $stmt->bindParam(5,$idCom1);
         $this->valide=$idCom1;
-        $stmt->bindParam(5,$this->idCom);
+        $stmt->bindParam(6,$this->idCom);
         $stmt->execute();
         }
         else
@@ -100,7 +109,7 @@ class commentaire{
         }        
     }
     public function validation($dbh){
-        self::modification($dbh,$this->contenu,1,$this->idResa,$this->idCom1);
+        self::modification($dbh,$this->contenu,$this->idLocataire,$this->idResa,$this->idCom1,1);
     }
     
     public function GetListing($dbh) {
