@@ -1,0 +1,91 @@
+/* 
+    CSS du Header (normal et admin)
+    Created on : 14 juin 2017, 11:56:20
+    Author     : lmayer-dalv
+*/
+
+#Banniere {
+    width: 90%;
+    margin-left: 5%;
+}
+
+div img {
+    display: none;
+}
+
+#Fermer {
+    display: none;
+}
+
+nav{
+    text-align: center;
+    margin-bottom: 7%;
+}
+nav li {
+    display: inline; /* Mode d’affichage, ici en ligne */
+    font-size: 150%; /* Taille de la police */
+}
+nav li a {
+    padding: 10px; /* Marge interne */
+    color: black; /* Couleur du texte */
+    font-weight: bold; /* Mise en gras du texte */
+    text-decoration: none; /* Suppression du soulignement */
+}
+nav li :hover {
+    color: darkmagenta;
+}
+
+h1{
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+@media screen and (max-width:800px) {
+    
+    #Banniere {
+        display: none;
+    }
+
+    
+    div img {
+        width: 20%;
+        display: block;
+        margin: auto;
+    }
+    
+    #Navigation:target {
+        display: block;
+    }
+    
+    #Fermer {
+        display: inline;
+    }
+    
+    nav { 
+        display: none;
+        margin-top: 0px;
+
+    }
+    nav ul { 
+        margin-left: 0; 
+        margin-top: 0; 
+        padding-left: 0;
+
+    }
+    nav li a { 
+        display: block;
+        margin-top: 1px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 25px;
+        width: 50%;
+        padding: 1px;
+        background-color: #f2abde;
+
+    }
+    
+    #Navigation {
+        display: none;
+    }
+    
+}

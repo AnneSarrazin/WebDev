@@ -1,0 +1,51 @@
+/* 
+    Created on : 14 juin 2017, 17:47:50
+    Author     : lmayer-dalv
+*/
+
+#formulaire {
+    border-radius: 5px;
+    background-color: #f3defc;
+    padding-top: 60px;
+    padding-right: 10px;
+    padding-left: 10px;
+    /*! margin-top: 30px; */
+    margin-right: auto;
+    margin-left: auto;
+    width: 50%;
+    padding: 60px;
+}
+
+#titre {
+    font-size: 30px;
+}
+
+#formulaire p {
+    text-align: center;
+    font-family: helvetica, sans-serif;
+}
+
+input[type=text], input[type=email] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;    
+}
+
+input[type=submit], input[type=button] {
+    width: 100%;
+    background-color: #f2abde;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: darkmagenta;
+}
