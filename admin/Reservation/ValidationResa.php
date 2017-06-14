@@ -1,6 +1,6 @@
 
 <?php
-require '../BDD/Resas/Objet_Resa/resa.php';
+require 'resa.php';
 
 $DateDeb=$_GET['DateDeb'];
 $DateFin=$_GET['DateFin'];
