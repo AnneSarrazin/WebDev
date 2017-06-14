@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Insertion Commentaire</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script language="javascript" src="InsertionCommentaire.js"></script>
+    </head>
+    <body>
+        <div id="resultat" >
+            
+        </div>
+        
+        <form id="formulaire">
+            <p>
+                Nom du locataire : <input type="text" id="nomLocataire" /> <br />
+                Prénom du locataire : <input type="text" id="prenomLocataire" /> <br />
+                Mail du locataire : <input type="email" id="mailLocataire" /> <br />
+                ID de la réservation correspondante : <input type="text" id="idReservation" /> <br />
+                Votre commentaire : <textarea rows="4" cols="50" placeholder="Votre commentaire..." id="contenuCommentaire" /></textarea <br />
+                <input type="button" onclick="request(readData)" id="validation" value="valider" />
+            </p>
+        </form>
+        
+    </body>
+</html>
