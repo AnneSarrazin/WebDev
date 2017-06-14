@@ -12,7 +12,7 @@ if ($Locataire) {
    try {
         $dbh = new PDO('mysql:host=localhost;dbname=Mandeline_resa', 'root', '');
        foreach ($dbh->query("SELECT * FROM locataire WHERE nom LIKE '%$Locataire%' ") as $row) {
-            echo "<item id=\"" . $row["idlocataire"] . "\" name=\"". $row["nom"] . " " . $row["prenom"] . "\" />";
+            echo "<item id=\"" . $row["idLocataire"] . "\" name=\"". $row["nom"] . " " . $row["prenom"] . "\" />";
         }
     } catch (PDOExcpetion $e) {
         print "ERREUR : " . $e->getMessage() . "<br/>";
