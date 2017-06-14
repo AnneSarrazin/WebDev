@@ -99,6 +99,9 @@ class resa{
         $stmt->bindParam(4,$this->Validation);
         $stmt->execute();
         $this->Bdd = TRUE;
+        foreach($dbh->query('SELECT idResa FROM reservation WHERE dateDeb=\''.$this->DateDeb.'\' AND dateFin=\''.$this->DateFin.'\'') as $row){
+                $this->IdResa = $row["idResa"];
+            }
         echo 'Création OK';
         }
         else
@@ -157,6 +160,8 @@ class resa{
     public function destruction($dbh) {
         if($this->Bdd == TRUE)
         {
+            $stmt = $dbh->prepare('UPDATE commentaire SET idResa = NULL WHERE idResa ='.$this->IdResa.'');
+            $stmt->execute();
              $dbh->query('DELETE FROM Reservation WHERE dateDeb=\''.$this->DateDeb.'\' AND dateFin=\''.$this->DateFin.'\'');  
         }
         else
