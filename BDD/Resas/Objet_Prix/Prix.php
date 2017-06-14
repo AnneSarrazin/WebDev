@@ -1,24 +1,21 @@
 <?php
 
-/* 
- * @autor: aSarrazin
- * Classe d'accès à la table de réservation
 
+/**
+ * Description of Prix
+ *
+ * @author asarrazin
  */
-
-class resa{
-    protected $IdResa;
+class Prix {
+    protected $IdPrix;
     protected $DateDeb;
     protected $DateFin;
-    protected $IdLocataire;
+    protected $Tarif;
     protected $Bdd;
-    protected $Validation;
             
-    function getIdResa() {
-        return $this->IdResa;
-    }
-    function getValidation() {
-        return $this->Validation;
+   
+    function getIdPrix() {
+        return $this->IdPrix;
     }
 
     function getDateDeb() {
@@ -29,16 +26,16 @@ class resa{
         return $this->DateFin;
     }
 
-    function getIdLocataire() {
-        return $this->IdLocataire;
+    function getTarif() {
+        return $this->Tarif;
     }
 
     function getBdd() {
         return $this->Bdd;
     }
 
-    public function __construct($Dbh,$DateDeb,$DateFin,$idLoc,$Valide) {
-        $this->IdResa;
+        public function __construct($Dbh,$DateDeb,$DateFin,$Tarif) {
+        $this->IdPrix;
         if(self::verifDate($DateDeb)){
             $this->DateDeb=$DateDeb;
             $entreeOk=TRUE;
@@ -55,11 +52,10 @@ class resa{
             echo 'Date de fin invalide';
             $entreeOk=FALSE;
         }
-        $this->IdLocataire=$idLoc;
-        $this->Validation=$Valide;
+        $this->Tarif=$Tarif;
         $this->Bdd=$Dbh;
         if($entreeOk==TRUE){
-            foreach($Dbh->query('SELECT idResa FROM reservation WHERE dateDeb=\''.$DateDeb.'\' AND dateFin=\''.$DateFin.'\'') as $row){
+            foreach($Dbh->query('SELECT idPrix FROM prix WHERE dateDeb=\''.$DateDeb.'\' AND dateFin=\''.$DateFin.'\'') as $row){
                 $this->IdResa = $row["idResa"];
             }
             if($this->IdResa == NULL)
@@ -92,15 +88,14 @@ class resa{
     public function creation($dbh) {
         if($this->Bdd == FALSE)
         {
-        $stmt = $dbh->prepare('INSERT INTO Reservation (idResa,dateDeb,dateFin,idLocataire,valide) VALUES(NULL,?,?,?,?)');
+        $stmt = $dbh->prepare('INSERT INTO Prix (idPrix,dateDeb,dateFin,Tarif) VALUES(NULL,?,?,?)');
         $stmt->bindParam(1,$this->DateDeb);
         $stmt->bindParam(2,$this->DateFin);
-        $stmt->bindParam(3,$this->IdLocataire);
-        $stmt->bindParam(4,$this->Validation);
+        $stmt->bindParam(3,$this->Tarif);
         $stmt->execute();
         $this->Bdd = TRUE;
-        foreach($dbh->query('SELECT idResa FROM reservation WHERE dateDeb=\''.$this->DateDeb.'\' AND dateFin=\''.$this->DateFin.'\'') as $row){
-                $this->IdResa = $row["idResa"];
+        foreach($dbh->query('SELECT idPrix FROM Prix WHERE dateDeb=\''.$this->DateDeb.'\' AND dateFin=\''.$this->DateFin.'\'') as $row){
+                $this->IdPrix = $row["idPrix"];
             }
         echo 'Création OK';
         }
@@ -110,7 +105,7 @@ class resa{
         }
     }
     
-    public function modification($dbh,$DateDeb,$DateFin,$idLoc,$valide) {
+    public function modification($dbh,$DateDeb,$DateFin,$Tarif) {
         if(self::verifDate($DateDeb)){
             $this->DateDeb=$DateDeb;
             $entreeOk=TRUE;
@@ -130,16 +125,14 @@ class resa{
         
         if(($this->Bdd == TRUE)&&($entreeOk==TRUE))
         {
-        $stmt = $dbh->prepare('UPDATE Reservation SET dateDeb=? , dateFin = ? , idLocataire = ?, valide = ? WHERE idResa = ?');
+        $stmt = $dbh->prepare('UPDATE Reservation SET dateDeb=? , dateFin = ? , tarif = ? WHERE idPrix = ?');
         $stmt->bindParam(1,$DateDeb);
         $this->DateDeb = $DateDeb;
         $stmt->bindParam(2,$DateFin);
         $this->DateFin = $DateFin;
-        $stmt->bindParam(3,$idLoc);
-        $this->IdLocataire = $idLoc;
-        $stmt->bindParam(4,$valide);
-        $this->Validation=$valide;
-        $stmt->bindParam(5,$this->IdResa);
+        $stmt->bindParam(3,$Tarif);
+        $this->Tarif = $Tarif;
+        $stmt->bindParam(5,$this->IdPrix);
         $stmt->execute();
         }
         else if ($this->Bdd == FALSE)
@@ -153,32 +146,16 @@ class resa{
         }
     }
     
-    public function validation($dbh){
-        self::modification($dbh,$this->DateDeb,$this->DateFin,$this->IdLocataire,1);
-    }
 
     public function destruction($dbh) {
         if($this->Bdd == TRUE)
         {
-            $stmt = $dbh->prepare('UPDATE commentaire SET idResa = NULL WHERE idResa ='.$this->IdResa.'');
-            $stmt->execute();
-             $dbh->query('DELETE FROM Reservation WHERE dateDeb=\''.$this->DateDeb.'\' AND dateFin=\''.$this->DateFin.'\'');  
+             $dbh->query('DELETE FROM Prix WHERE dateDeb=\''.$this->DateDeb.'\' AND dateFin=\''.$this->DateFin.'\'');  
         }
         else
         {
             echo "Votre objet n'est pas présent dans la BDD";
         }
     }
-    
-    public function GetListing($dbh) {
-        $compteur=0;
-         foreach($dbh->query('SELECT * FROM Reservation') as $row){
-            $Tab[$compteur]=$row;
-            $compteur++;
-        }
-        return $Tab;
-        
-    }
-
-
+   
 }

@@ -16,6 +16,18 @@ CREATE TABLE Reservation(
         PRIMARY KEY (idResa )
 )ENGINE=InnoDB;
 
+--------------------------------------------------------------
+-- Table: Prix
+--------------------------------------------------------------
+
+CREATE TABLE Prix(
+        idPrix     int (11) Auto_increment  NOT NULL ,
+        dateDeb     Date NOT NULL ,
+        dateFin     Date NOT NULL ,
+        Tarif        Float ,
+        PRIMARY KEY (idResa )
+)ENGINE=InnoDB;
+
 
 --------------------------------------------------------------
 -- Table: Locataire
