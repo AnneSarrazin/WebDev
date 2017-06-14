@@ -3,7 +3,7 @@
 /**
  * @title Objet Locataire
  * @author Luca Mayer Dalverny
- * @date 06/06/2017
+ * @date 13/06/2017
  * @make
  * @sec Introduction
  * La classe locataire permet d'interagir avec la table 'Locataire' presente dans la base de donnees. Elle contient donc les memes variables que la table de la base de donnees.
@@ -102,8 +102,14 @@ class Locataire {
         $stmt->bindParam(2,$this->prenom);
         $stmt->bindParam(3,$this->adresseMail);
         $stmt->execute();
-        $this->bdd = TRUE;
-        $retour = TRUE;
+        foreach($dbh->query('SELECT idLocataire FROM locataire WHERE nom = "'.  $this->nom.'" AND prenom = "'.$this->prenom.'" AND adresseMail = "'.  $this->adresseMail.'"') as $row){
+            $this->id = $row["idLocataire"];
+        }
+        if($this->id != TRUE)
+            {
+                $this->bdd = TRUE;
+                $retour = TRUE;            
+            }
         }
         return $retour;
     }
