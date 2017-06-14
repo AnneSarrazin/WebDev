@@ -56,9 +56,9 @@ class Prix {
         $this->Bdd=$Dbh;
         if($entreeOk==TRUE){
             foreach($Dbh->query('SELECT idPrix FROM prix WHERE dateDeb=\''.$DateDeb.'\' AND dateFin=\''.$DateFin.'\'') as $row){
-                $this->IdResa = $row["idResa"];
+                $this->IdPrix = $row["idPrix"];
             }
-            if($this->IdResa == NULL)
+            if($this->IdPrix == NULL)
             {
                 $this->Bdd = FALSE;
             }
