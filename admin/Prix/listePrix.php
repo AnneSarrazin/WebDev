@@ -14,6 +14,8 @@
             echo "<tr><td>".$row['dateDeb']."</td><td>".$row['dateFin']."</td><td>".$row['Tarif']."€</td><td><a href=\"SupprimePrix.php?dateDeb=".$row['dateDeb']."&dateFin=".$row['dateFin']."&Tarif=".$row['Tarif']."\">Supprimer</a></td></tr>";
         }
         ?>
+            
+            <p>Pour ajouter un nouveau tarif, <a href="AjoutTarif.php">cliquez ici</a>.</p>
         </table>
     </body>
 </html>
