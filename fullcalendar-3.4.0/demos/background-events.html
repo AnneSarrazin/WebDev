@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<link href='../fullcalendar.min.css' rel='stylesheet' />
+<link href='../fullcalendar.print.min.css' rel='stylesheet' media='print' />
+<script src='../lib/moment.min.js'></script>
+<script src='../lib/jquery.min.js'></script>
+<script src='../fullcalendar.min.js'></script>
+ <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  
+ 
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
+  
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.9.0.js"></script>
+   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css" />
+   <script src="js/app.js" type="text/javascript"></script>
+<script>
+
+	$(document).ready(function() {
+
+		$('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: ''
+			},
+			defaultDate: '2017-06-12',
+			navLinks: false, // can click day/week names to navigate views
+			businessHours: false, // display business hours
+			editable: false,
+			events: 'php/action1.php'
+            
+		});
+		
+	});
+
+</script>
+<style>
+
+	body {
+		margin: 40px 10px;
+		padding: 0;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		font-size: 14px;
+	}
+
+        #debut{
+            color: #cc00ff;
+            text-align: center;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+	#calendar {
+		max-width: 600px;
+		margin: 0 auto;
+	}
+        .page-body{
+            text-align: center;
+        }
+
+</style>
+</head>
+<body ng-app="modalFormApp">
+
+    <div id='debut'>
+        PROJET MANDELINE
+    </div>
+    <div id='calendar'></div>
+    <div ng-controller="modalAccountFormController" >
+        
+         
+                <div class="page-body">
+                    <h1><button class="btn btn-primary" ng-click="showForm()">Reservation maintenant!</button></h1>
+                </div>
+   
+     </div>
+</body>
+</html>
