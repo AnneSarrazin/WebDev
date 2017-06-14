@@ -105,7 +105,7 @@ class Locataire {
         foreach($dbh->query('SELECT idLocataire FROM locataire WHERE nom = "'.  $this->nom.'" AND prenom = "'.$this->prenom.'" AND adresseMail = "'.  $this->adresseMail.'"') as $row){
             $this->id = $row["idLocataire"];
         }
-        if($this->id != TRUE)
+        if($this->id != NULL)
             {
                 $this->bdd = TRUE;
                 $retour = TRUE;            
