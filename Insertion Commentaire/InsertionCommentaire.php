@@ -27,7 +27,7 @@ if ($nom && $prenom && $mail && $idResa && $contenu)
                     echo "Le commentaire de " . $nom . " a été ajouté avec succès."; 
                 }else
                     {
-                        echo "Le commentaire était déjà dans la base de données.";
+                        echo "Un commentaire identique était déjà dans la base de données!";
                     }
             
         }  catch (PDOExcpetion $e){
