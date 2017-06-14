@@ -25,7 +25,7 @@ CREATE TABLE Prix(
         dateDeb     Date NOT NULL ,
         dateFin     Date NOT NULL ,
         Tarif        Float ,
-        PRIMARY KEY (idResa )
+        PRIMARY KEY (idPrix )
 )ENGINE=InnoDB;
 
 
