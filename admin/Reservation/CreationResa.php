@@ -5,9 +5,10 @@
         <meta charset="UTF-8">
         <title></title>
         <script src="AJAX_Modification_Locataire.js" type="text/javascript"></script>
+        <script src="VerifDate.js" type="text/javascript"></script>
     </head>
     <body>
-        <form action="CreationResaPHP.php" method="post">
+        <form action="CreationResaPHP.php" method="post" onsubmit="return DateOk()">
             <fieldset>
                 <legend>Dates de réservation : </legend>
                 <label for="DateDeb">Date de début de location :</label><br/>

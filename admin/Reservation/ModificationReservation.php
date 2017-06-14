@@ -9,6 +9,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title></title>
         <script src="AJAX_Modification_Locataire.js" type="text/javascript"></script>
+        <script src="VerifDate.js" type="text/javascript"></script>
     </head>
     <body>
         <h2>Modification d'une réservation</h2>
@@ -17,7 +18,7 @@ and open the template in the editor.
         $DateFin=$_GET['DateFin'];
         $Locataire=$_GET['Locataire'];
         ?>
-        <form method="post" action="ModificationResaPHP.php">
+        <form method="post" action="ModificationResaPHP.php" onsubmit="return DateOk()">
             <fieldset>
                 <legend>Modification des dates:</legend>
                 <label for="dateDeb">Date de début de la réservation : </label><br/>
