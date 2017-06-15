@@ -20,7 +20,8 @@
                 <legend>Locataire : </legend>
                 <label for="nom">Entrez le nom de famille du locataire :</label>
                 <input type="text" name="nom" onchange="request(this);"/>
-                <select name="locataire" id="locataire" value="NULL"></select> <br/><br/>
+                <select name="locataire" id="locataire" value="NULL"></select> <br/>
+                <cite>Si il n'y a pas de locataire, laissez le champ vide.</cite><br/>
             </fieldset>
             <fieldset>
                 <legend>Choisissez l'état de réservation : </legend>
