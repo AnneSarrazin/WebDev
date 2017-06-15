@@ -1,6 +1,5 @@
 <?php
     $lieuChoisi = (isset($_POST["LieuChoisi"])) ? $_POST["LieuChoisi"] : NULL;
-    echo $lieuChoisi;
     include('twig.php');
     $dbh = new PDO('mysql:host=localhost;dbname=mandeline_photos', 'root', '');
     

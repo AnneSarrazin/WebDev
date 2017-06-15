@@ -12,6 +12,7 @@
         <link href="../CSS/photos.css" rel="stylesheet" type="text/css"/>
         <link rel="shortcut icon" href="../images/mandeline.png">
         <meta name="author" content="Anne Sarrazin"/>
+        <script src="Gallerie.js"></script>
 </head>
 <body>
     <header>
@@ -38,22 +39,27 @@
             </select>
              <button type="submit">Envoyer</button>
         </form>
+        <p><strong>Passez votre souris pour agrandir l'image!</strong></p>
         <div class='containerPhoto'>
         {% for i in TableauPhotos %}
             {% if LieuChoisi is null or i.id_lieu == LieuChoisi %}
-                <div class="blocPhoto">
-                <img src="{{i.url}}" />
+                <div class="blocPhoto" onmouseover="afficheImage(this)">
+                    <img src="{{i.url}}"/>
                 {% set nomLieu = '' %}
                 {% for j in TableauLieu %}
                     {% if j.id_lieu == i.id_lieu %}
                         {% set nomLieu = j.Nom_lieu %}
                     {% endif %}
                 {% endfor %}
-                <p>Lieu :  {{ nomLieu }}</p>
-                <p>Description: {{i.Description}}</p>
+                    <div class="desc"/>
+                        <p>Lieu :  {{ nomLieu }}</p>
+                        <p>Description: {{i.Description}}</p>
+                    </div>
                 </div>
             {% endif %}
         {% endfor %}
+        </div>
+        <div id="photoSelection">
         </div>
     </article>
     </body>
