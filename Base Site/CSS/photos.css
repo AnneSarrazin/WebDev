@@ -8,3 +8,18 @@ and open the template in the editor.
     Author     : asarrazin
 */
 
+
+
+.blocPhoto{
+    padding:1%;
+    margin:1%;
+    max-width: 20%;
+    max-height: 20%;
+    display:inline-block;
+    vertical-align: top;
+}
+
+.containerPhoto {
+    margin: 5px;
+    padding: 20px;
+}

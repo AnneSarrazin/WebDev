@@ -38,9 +38,10 @@
             </select>
              <button type="submit">Envoyer</button>
         </form>
-        
+        <div class='containerPhoto'>
         {% for i in TableauPhotos %}
             {% if LieuChoisi is null or i.id_lieu == LieuChoisi %}
+                <div class="blocPhoto">
                 <img src="{{i.url}}" />
                 {% set nomLieu = '' %}
                 {% for j in TableauLieu %}
@@ -50,8 +51,10 @@
                 {% endfor %}
                 <p>Lieu :  {{ nomLieu }}</p>
                 <p>Description: {{i.Description}}</p>
+                </div>
             {% endif %}
         {% endfor %}
+        </div>
     </article>
     </body>
 </html>
