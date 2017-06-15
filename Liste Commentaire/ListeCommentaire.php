@@ -19,6 +19,7 @@ include("../commentaire.php");
         <title></title>
         <link href="../Style/Tableaux.css" rel="stylesheet" type="text/css"/>
         <link href="../Style/Indicateurs.css" rel="stylesheet" type="text/css"/>
+        <link href="../Style/General.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <?php
@@ -37,10 +38,18 @@ include("../commentaire.php");
                     $validation = "oui";
                 }
                 $com = $row["idCom"];
-                foreach ($dbh->query('SELECT nom, prenom FROM locataire INNER JOIN commentaire USING(idLocataire) WHERE idLocataire = '.$row["idLocataire"].'') as $row2)
+                $cmd = $dbh->query('SELECT nom, prenom FROM locataire INNER JOIN commentaire USING(idLocataire) WHERE idLocataire = '.$row["idLocataire"].'');
+                if($cmd != NULL)
                 {
-                    $nom = $row2["nom"];
-                    $prenom = $row2["prenom"];
+                    foreach ($cmd as $row2)
+                    {
+                        $nom = $row2["nom"];
+                        $prenom = $row2["prenom"];
+                    }
+                }else
+                {
+                    $nom = "Inconnu";
+                    $prenom = " ";
                 }
                 echo '<tr><td>'.$nom.' '.$prenom.'</td><td>'.$contenu.'</td><td>'.$validation.'</td>';
                 echo'<td id="hors" ><a href="'.$urlValidation.$contenu.'&Nom='.$nom.'&Prenom='.$prenom.'&Com='.$com.'"><img id ="indicateur" src="../Indicateurs/Valider.png" title="Valider" ></a></td>';
