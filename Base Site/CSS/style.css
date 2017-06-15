@@ -1,0 +1,64 @@
+/* 
+    Created on : 21 oct. 2016, 16:12:09
+    Author     : asarrazin
+*/
+
+img{
+    width:50%;
+}
+
+#en_tete{
+    width: 90%;
+    margin-left: 5%;
+}
+
+nav{
+    text-align: center;
+    margin-bottom: 7%;
+}
+nav li {
+    display: inline; /* Mode d’affichage, ici en ligne */
+    font-size: 150%; /* Taille de la police */
+}
+nav li a {
+    padding: 10px; /* Marge interne */
+    color: black; /* Couleur du texte */
+    font-weight: bold; /* Mise en gras du texte */
+    text-decoration: none; /* Suppression du soulignement */
+}
+nav li :hover {
+    color: dimgrey;
+}
+
+h1{
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+article{
+    margin-left: 5%;
+    text-align: center;
+}
+
+
+
+@media screen and (max-width:800px) {
+    nav { 
+        margin-top: 0px;
+
+    }
+    nav ul { 
+        margin-left: 0; 
+        margin-top: 0; 
+        padding-left: 0;
+
+    }
+    nav li a { 
+        display: block;
+        margin-top: 1px;
+        height: 25px;
+        padding: 1px;
+        background-color: #E3E3E3;
+
+    }
+}
