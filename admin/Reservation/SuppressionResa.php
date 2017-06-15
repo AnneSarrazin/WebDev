@@ -9,7 +9,6 @@ $Resa= new resa($dbh,$DateDeb,$DateFin,NULL,0);
 
 $Resa->destruction($dbh);
 
-echo '<p>Réservation supprimée avec succès.<br>';
-echo 'Si vous n\'êtes pas automatiquement redirigé cliquez <a href=\"affichageResa.php">ici</a></p>';
+echo '<p>Si vous n\'êtes pas automatiquement redirigé cliquez <a href=\"affichageResa.php">ici</a></p>';
 
 header("refresh:3;url=affichageResa.php");

@@ -25,7 +25,7 @@
                 <th>Date de fin de réservation</th>
                 <th>Nom du locataire</th>
                 <th>Etat</th>
-                <th>Valider</th>
+                <th>Changement d\'état</th>
                 <th>Modifier</th>
                 <th>Supprimer</th>
             </tr>');
@@ -71,7 +71,7 @@
                     echo '</td>';
                 }
                 echo '<td>';
-                echo '<a href = \'ValidationResa.php?IdResa='.$Tab[$i][0].'&DateDeb='.$Tab[$i][1].'&DateFin='.$Tab[$i][2].'\'>Valider</a>';
+                echo '<a href = \'ValidationResa.php?IdResa='.$Tab[$i][0].'&DateDeb='.$Tab[$i][1].'&DateFin='.$Tab[$i][2].'\'>Changer l\'état</a>';
                 echo '</td>';
                 
                 echo '<td>';
