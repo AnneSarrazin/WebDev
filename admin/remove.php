@@ -4,6 +4,6 @@ if($address)
 {
     if(unlink($address))
     {
-        echo("Fichier supprimé!")
+        echo("Fichier supprimé!");
     }
 }
