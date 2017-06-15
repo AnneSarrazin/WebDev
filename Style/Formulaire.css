@@ -20,12 +20,12 @@
     font-size: 30px;
 }
 
-#formulaire p {
+#formulaire p, label {
     text-align: center;
     font-family: helvetica, sans-serif;
 }
 
-input[type=text], input[type=email] {
+input[type=text], input[type=email], textarea {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;

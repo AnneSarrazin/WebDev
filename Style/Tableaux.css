@@ -1,0 +1,38 @@
+/* 
+    Created on : 15 juin 2017, 10:13:20
+    Author     : lmayer-dalv
+*/
+
+table {
+    margin: auto;
+}
+
+td, th {
+    padding-top: 11px;
+    padding-bottom: 8px;
+    /*border: 1px solid black;*/
+    padding: 8px;
+    display: table-cell;
+}
+
+th {
+    background-color: #f2abde;
+}
+
+td {
+    text-align: center;
+    background-color:cornsilk;
+}
+
+#hors {
+    width: 30px;
+}
+
+#option, #out {
+    width: 75px;
+    margin-right: 0;
+}
+
+#out, #hors{
+    background-color: white;
+}
