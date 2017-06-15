@@ -9,8 +9,10 @@ if ((isset($_POST['locataire']) == TRUE)) {
 else{
     $Locataire=NULL;
 }
+$newValide=$_POST['newValide'];
+
 $dbh = new PDO('mysql:host=localhost;dbname=Mandeline_Resa', 'root','');
-$Resa= new resa($dbh,$DateDeb,$DateFin,$Locataire,1);
+$Resa= new resa($dbh,$DateDeb,$DateFin,$Locataire,$newValide);
 
 $Resa->creation($dbh);
 

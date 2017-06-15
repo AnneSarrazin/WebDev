@@ -24,7 +24,7 @@
                 <th>Date de début de réservation</th>
                 <th>Date de fin de réservation</th>
                 <th>Nom du locataire</th>
-                <th>Validé?</th>
+                <th>Etat</th>
                 <th>Valider</th>
                 <th>Modifier</th>
                 <th>Supprimer</th>
@@ -48,13 +48,16 @@
                     echo '<td>';
                     if($j == 4)
                     {
-                        if ($Tab[$i][$j] == FALSE)
+                        if ($Tab[$i][$j] == 0)
                         {
-                            Echo 'Non';
+                            Echo 'En attente';
                         }
-                        else
+                        else if($Tab[$i][$j]==1)
                         {
-                            Echo 'Oui';
+                            Echo 'Validée';
+                        }
+                        else if($Tab[$i][$j]==2){
+                            echo 'Appartement non diponible';
                         }
                     }
                     else if($j == 3 && !is_null($Tab[$i][$j])) //La quatrième colonne de ce tableau est celle correspondant à l'ID du locataire

@@ -22,6 +22,12 @@
                 <input type="text" name="nom" onchange="request(this);"/>
                 <select name="locataire" id="locataire" value="NULL"></select> <br/><br/>
             </fieldset>
+            <fieldset>
+                <legend>Choisissez l'état de réservation : </legend>
+                <input type="radio" name="newValide" value="0" checked>En attente<br>
+                <input type="radio" name="newValide" value="1">Validée<br>
+                <input type="radio" name="newValide" value="2"> Appartement non dipsonible <br>
+            </fieldset>
             
             <input type="submit" value="Créer une nouvelle réservation"/>
         </form>
