@@ -153,8 +153,8 @@ class resa{
         }
     }
     
-    public function validation($dbh){
-        self::modification($dbh,$this->DateDeb,$this->DateFin,$this->IdLocataire,1);
+    public function validation($dbh,$newValide){
+        self::modification($dbh,$this->DateDeb,$this->DateFin,$this->IdLocataire,$newValide);
     }
 
     public function destruction($dbh) {
