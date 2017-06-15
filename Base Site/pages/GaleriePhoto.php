@@ -12,7 +12,7 @@
         $Tab2[$compteur]=$row;
         $compteur++;
     }
-    $template = $twig->loadTemplate('GalleriePhoto.twig');
+    $template = $twig->loadTemplate('GaleriePhoto.twig');
     echo $template->render(array(
     'TableauPhotos' => $Tab1,
     'TableauLieu' => $Tab2,

@@ -8,18 +8,27 @@ and open the template in the editor.
     Author     : asarrazin
 */
 
-
-
-.blocPhoto{
-    padding:1%;
-    margin:1%;
-    max-width: 20%;
-    max-height: 20%;
-    display:inline-block;
-    vertical-align: top;
+.containerPhoto {
+    margin: auto 0;
+    display: table-row;
 }
 
-.containerPhoto {
-    margin: 5px;
-    padding: 20px;
+.blocPhoto{
+    max-width: 15%;
+    max-height: 15%;
+    padding: 1%;
+    display:table-cell;
+}
+
+.blocPhoto .desc{
+    display:none;
+}
+
+.blocPhoto:hover{
+    background-color: #f3defc;
+}
+
+#photoSelection{
+    margin: auto 0;
+    margin-top: 1%;
 }
