@@ -1,41 +1,45 @@
-<?php
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Insertion Commentaire</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script language="javascript" src="InsertionCommentaire.js"></script>
+    </head>
+    <body>
+        <?php
+        include $_SERVER['DOCUMENT_ROOT']."/Mandeline/Resa.php";
 
-include $_SERVER['DOCUMENT_ROOT']."/Mandeline/Locataire.php";
-include $_SERVER['DOCUMENT_ROOT']."/Mandeline/Commentaire.php";
+        $dbh = new PDO('mysql:host=localhost;dbname=mandeline_resa;charset=utf8', 'root', '');
 
-$nom = (isset($_GET["Nom"])) ? $_GET["Nom"] : NULL; 
-$prenom = (isset($_GET["Prenom"])) ? $_GET["Prenom"] : NULL;
-$mail = (isset($_GET["Mail"])) ? $_GET["Mail"] : NULL;
-$idResa = (isset($_GET["IdResa"])) ? $_GET["IdResa"] : NULL;
-$contenu = (isset($_GET["Contenu"])) ? $_GET["Contenu"] : NULL;
-
-if ($nom && $prenom && $mail && $idResa && $contenu)
-    { 
-        try{
-            $dbh = new PDO('mysql:host=localhost;dbname=mandeline_resa;charset=utf8', 'root', '');
-            $locataire = new Locataire($dbh,$nom,$prenom,$mail);
-            if($locataire->creation($dbh) == TRUE)
-                {
-                    echo "Le locataire " . $nom . " a été ajouté avec succès. "; 
-                }else
-                    {
-                        echo "Le locataire était déjà dans la base de données. ";
-                    }
-            $commentaire = new Commentaire($dbh,$contenu,$locataire->getId(),$idResa, NULL, 0);
-            if($commentaire->creation($dbh) == TRUE)
-                {
-                    echo "Le commentaire de " . $nom . " a été ajouté avec succès."; 
-                }else
-                    {
-                        echo "Un commentaire identique était déjà dans la base de données!";
-                    }
-            
-        }  catch (PDOExcpetion $e){
-            //print "ERREUR : " . $e->getMessage() . "<br/>";
-            die();            
+        $compteur=0;
+        foreach($dbh->query('SELECT * FROM Reservation') as $row){
+            $Tab[$compteur]=$row;
+            $compteur++;
         }
-       
-    } else
-        { 
-        echo "Erreur lors de l'ajout du commentaire."; 
-        } 
+        ?>
+        <form id="formulaire">
+            <p>
+                Nom du locataire : <input type="text" id="nomLocataire" /> <br />
+                Prénom du locataire : <input type="text" id="prenomLocataire" /> <br />
+                Mail du locataire : <input type="email" id="mailLocataire" /> <br />
+                Vos date de réservation :
+                <select id="idReservation" required>
+                <option value=''>Choisissez vos dates</option>
+                <?php
+                for($i=0; $i<Count($Tab); $i++)
+                {
+                    if($Tab[$i][4] == 1) //On ne choisit d'afficher que les réservations validées
+                    {
+                        echo "<option value='".$Tab[$i][0]."'>Du ".$Tab[$i][1]." au ".$Tab[$i][2]."</option>";
+                    }
+                }
+                ?>
+                </select> <br />
+                Votre commentaire : <textarea rows="4" cols="50" placeholder="Votre commentaire..." id="contenuCommentaire" /></textarea <br />
+                <input type="button" onclick="request(readData)" id="validation" value="valider" />
+            </p>
+        </form>
+        
+    </body>
+</html>

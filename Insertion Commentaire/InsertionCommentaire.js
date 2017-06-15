@@ -33,7 +33,7 @@ function request(callBack) {
     var mail = encodeURIComponent(document.getElementById("mailLocataire").value); 
     var idResa = encodeURIComponent(document.getElementById("idReservation").value); 
     var contenu = encodeURIComponent(document.getElementById("contenuCommentaire").value); 
-    xhr.open("GET", "InsertionCommentaire.php?Nom="+nom+"&Prenom="+prenom+"&Mail="+mail+"&IdResa="+idResa+"&Contenu="+contenu, true);
+    xhr.open("GET", "InsertionCommentaireTraitement.php?Nom="+nom+"&Prenom="+prenom+"&Mail="+mail+"&IdResa="+idResa+"&Contenu="+contenu, true);
     xhr.send(null);
     
    
