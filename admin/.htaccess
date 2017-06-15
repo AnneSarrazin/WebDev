@@ -1,0 +1,4 @@
+AuthUserFile C:\wamp64\www\Mandeline\admin\.htpasswd
+AuthName "Entrez votre mot de passe pour entrer dans la partie administration."
+AuthType Basic
+Require valid-user
