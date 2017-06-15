@@ -1,0 +1,14 @@
+/* 
+    Created on : 15 juin 2017, 16:43:59
+    Author     : lmayer-dalv
+*/
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
