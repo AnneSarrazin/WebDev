@@ -102,11 +102,11 @@ class resa{
         foreach($dbh->query('SELECT idResa FROM reservation WHERE dateDeb=\''.$this->DateDeb.'\' AND dateFin=\''.$this->DateFin.'\'') as $row){
                 $this->IdResa = $row["idResa"];
             }
-        echo 'Création OK';
+        echo '<p>Création éffectuée avec succès</p>';
         }
         else
         {
-            echo "Votre objet est déjà dans la BDD";
+            echo "<p>Cette réservation existe déjà</p>";
         }
     }
     
@@ -116,7 +116,7 @@ class resa{
             $entreeOk=TRUE;
         }
         else{
-            echo 'Date de début invalide';
+            echo '<p>Date de début invalide</p>';
             $entreeOk=FALSE;
         }
         if(self::verifDate($DateFin)){
@@ -124,7 +124,7 @@ class resa{
              $entreeOk=TRUE;
         }
         else{
-            echo 'Date de fin invalide';
+            echo '<p>Date de fin invalide</p>';
             $entreeOk=FALSE;
         }
         
@@ -141,20 +141,22 @@ class resa{
         $this->Validation=$valide;
         $stmt->bindParam(5,$this->IdResa);
         $stmt->execute();
+        echo "<p>Modification(s) effectuée(s) avec succès.</p> ";
         }
         else if ($this->Bdd == FALSE)
         {
-            echo "Votre objet n'est pas présent dans la BDD";
+            echo "<p>Vous essayez de modifier une réservation inexistante.</p>";
         }  
         
         else if ($entreeOk==FALSE)
         {
-            echo 'Entrée(s) invalide(s)';
+            echo '<p>Il y a une/des entrée(s) invalide(s)</p>';
         }
     }
     
     public function validation($dbh,$newValide){
         self::modification($dbh,$this->DateDeb,$this->DateFin,$this->IdLocataire,$newValide);
+        echo '<p>Changement d\'état effectué.</p>';
     }
 
     public function destruction($dbh) {
@@ -162,11 +164,12 @@ class resa{
         {
             $stmt = $dbh->prepare('UPDATE commentaire SET idResa = NULL WHERE idResa ='.$this->IdResa.'');
             $stmt->execute();
-             $dbh->query('DELETE FROM Reservation WHERE dateDeb=\''.$this->DateDeb.'\' AND dateFin=\''.$this->DateFin.'\'');  
+            $dbh->query('DELETE FROM Reservation WHERE dateDeb=\''.$this->DateDeb.'\' AND dateFin=\''.$this->DateFin.'\'');  
+            echo '<p>Supprimée avec succès</p>';
         }
         else
         {
-            echo "Votre objet n'est pas présent dans la BDD";
+            echo "<p>Cette réservation n\'existe pas.";
         }
     }
     
