@@ -28,20 +28,18 @@ function request(callBack) {
             callBack(xhr.responseText);
         }
     };
-    var nom = encodeURIComponent(document.getElementById("nom").value);
-    var prenom = encodeURIComponent(document.getElementById("prenom").value);
-    var mail = encodeURIComponent(document.getElementById("mail").value); 
+    var com = encodeURIComponent(document.getElementById("com").value); 
      
-    xhr.open("GET", "SuppressionLocataireBis.php?Nom="+nom+"&Prenom="+prenom+"&Mail="+mail, true);
+    xhr.open("GET", "SuppressionCommentaireBis.php?Com="+com, true);
     xhr.send(null);
    
 }
 
 function readData(oData) {
-    if(oData != "Erreur lors de la suppression du locataire")
+    if(oData != "Erreur lors de la suppression du Commentaire")
     {
         document.getElementById("formulaire").style.display = "none";
-        window.location = "http://localhost/Mandeline/ListeLocataire/ListeLocataire.php";
+        window.location = "http://localhost/Mandeline/ListeCommentaire/ListeCommentaire.php";
     }
     alert(oData);
 }
