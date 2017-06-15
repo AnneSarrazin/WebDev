@@ -5,12 +5,12 @@ function afficheCommentaire($dbh, $Tab, $i)
     $stmt->execute(); 
     $NomPrenom = $stmt->fetch();
     echo '<p><strong>Auteur :</strong> '.$NomPrenom[0].' '.$NomPrenom[1].'</p>';
-    $stmt = $dbh->prepare('SELECT dateDeb, dateFin FROM reversation WHERE idResa = '.$Tab[$i][3]); //On récupère les dates de réservations (si possible)
+    $stmt = $dbh->prepare('SELECT dateDeb, dateFin FROM reservation WHERE idResa = '.$Tab[$i][3]); //On récupère les dates de réservations (si possible)
     $stmt->execute(); 
     $DatesDebutFin = $stmt->fetch();
-    if(!isset($DatesDebutFin))
+    if(isset($DatesDebutFin))
     {
-        echo '<p>Période de réservation du :'.$DatesDebutFin[0].' au '.$DatesDebutFin[1].'</p>';
+        echo '<p>Période de réservation du '.$DatesDebutFin[0].' au '.$DatesDebutFin[1].'</p>';
     }
     echo '<p><strong>Contenu du commentaire :</strong> '.$Tab[$i][1].'</p>';
     echo '<p>Commentaire numéro '.$Tab[$i][0].'</p>';
