@@ -38,6 +38,7 @@ $com = (isset($_GET["Com"])) ? $_GET["Com"] : NULL;
         echo '</p>';
         echo '</form>';
         echo'</div>';
+        include("../Footer/Footer.php");
         ?>
     </body>
 </html>
