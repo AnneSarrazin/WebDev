@@ -155,6 +155,9 @@ class Locataire {
             $stmt = $dbh->prepare('UPDATE reservation SET idLocataire = NULL WHERE idLocataire = ?');
             $stmt->bindParam(1,$this->id);
             $stmt->execute();
+            $stmt2 = $dbh->prepare('UPDATE commentaire SET idLocataire = NULL WHERE idLocataire = ?');
+            $stmt2->bindParam(1,$this->id);
+            $stmt2->execute();
             $stmt1 = $dbh->prepare('DELETE FROM locataire WHERE idLocataire = ?');
             $stmt1->bindParam(1,$this->id);
             $stmt1->execute();
