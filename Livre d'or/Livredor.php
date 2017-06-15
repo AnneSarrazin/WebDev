@@ -32,6 +32,10 @@
             $Tab[$compteur]=$row;
             $compteur++;
         }
+        
+        echo "<pre>";
+        print_r($Tab);
+        echo "</pre>";
         if (isset($Tab))
         {
             for($i = 0; $i<count($Tab); $i++)

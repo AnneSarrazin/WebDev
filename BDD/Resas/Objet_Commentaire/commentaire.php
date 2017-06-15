@@ -51,7 +51,7 @@ class commentaire{
         $this->idResa=$idResa;
         $this->idCom1=$idCom1;
         $this->valide=$valide;
-        $stmt = $dbh->prepare("SELECT idCom FROM commentaire WHERE contenu=? AND valide=? AND idResa=? AND (idCom1=? OR idCom1 IS NULL) AND (idLocataire=? OR idLocataire IS null)");
+        $stmt = $dbh->prepare("SELECT idCom FROM commentaire WHERE contenu=? AND valide=? AND (idResa=? OR idResa IS NULL) AND (idCom1=? OR idCom1 IS NULL) AND (idLocataire=? OR idLocataire IS null)");
         $stmt->bindParam(1,$this->contenu);
         $stmt->bindParam(2,$this->valide);
         $stmt->bindParam(3,$this->idResa);
@@ -96,7 +96,7 @@ class commentaire{
             $stmt->bindParam(4,$this->idResa);
             $stmt->bindParam(5,$this->idCom1);
             $stmt->execute();
-            $stmt = $dbh->prepare("SELECT idCom FROM commentaire WHERE contenu=? AND valide=? AND idResa=? AND (idCom1=? OR idCom1 IS NULL) AND (idLocataire=? OR idLocataire IS null)");
+            $stmt = $dbh->prepare("SELECT idCom FROM commentaire WHERE contenu=? AND valide=? AND (idResa=? OR idResa IS NULL) AND (idCom1=? OR idCom1 IS NULL) AND (idLocataire=? OR idLocataire IS null)");
             $stmt->bindParam(1,$this->contenu);
             $stmt->bindParam(2,$this->valide);
             $stmt->bindParam(3,$this->idResa);
